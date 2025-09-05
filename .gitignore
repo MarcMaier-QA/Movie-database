@@ -1,0 +1,20 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Datenbank
+*.db
+
+# Virtuelle Umgebung
+.venv/
+env/
+venv/
+
+# macOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Logs
+*.log

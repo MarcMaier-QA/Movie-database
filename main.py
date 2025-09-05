@@ -1,6 +1,4 @@
-from http.client import responses
-
-import movie_storage_sql as storage
+from storage import movie_storage_sql as storage
 import statistics
 import random
 import requests
