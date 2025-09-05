@@ -242,7 +242,7 @@ def generate_website():
     """
     movies = storage.list_movies()  # Get all movies from the database
 
-    # 1) Read the template file
+    # 1 Read the template file
     try:
         with open("_static/index_template.html", "r", encoding="utf-8") as file:
             template = file.read()
@@ -250,13 +250,12 @@ def generate_website():
         print("Template file not found. Make sure _static/index_template.html exists.")
         return
 
-    # 2) Build the <li> items matching style.css (movie-poster, movie-title, movie-year)
+    # 2 Build the <li> items matching style.css (movie-poster, movie-title, movie-year)
     items = []
     for title, data in movies.items():
         poster = (data.get("poster") or "").strip()
         # OMDb sometimes returns "N/A"
         if not poster or poster.upper() == "N/A":
-            # Optional: put a placeholder file next to index.html or use a remote placeholder
             poster = "https://placehold.co/128x193?text=No+Poster"
 
         year = data.get("year", "Unknown")
@@ -274,27 +273,17 @@ def generate_website():
 
     movie_grid = "\n".join(items)
 
-    # 3) Replace placeholders in the template
-    website_html = template.replace("__TEMPLATE_TITLE__", "My Movie Database")
-    website_html = website_html.replace("__TEMPLATE_MOVIE_GRID__", movie_grid)
-
-    # 4) Write the final HTML to a file (root folder)
-    with open("index.html", "w", encoding="utf-8") as file:
-        file.write(website_html)
-
-    # 5) Print success message
-    print("Website was generated successfully.")
-
-
     # 3 Replace placeholders in the template
     website_html = template.replace("__TEMPLATE_TITLE__", "My Movie Database")
     website_html = website_html.replace("__TEMPLATE_MOVIE_GRID__", movie_grid)
 
-    # 4 Write the final HTML to a file
+    # 4 Set correct path for CSS file
+    website_html = website_html.replace('href="style.css"', 'href="_static/style.css"')
+
+    # 5 Write the final HTML to a file (root folder)
     with open("index.html", "w", encoding="utf-8") as file:
         file.write(website_html)
 
-    # 5 Print success message
     print("Website was generated successfully.")
 
 

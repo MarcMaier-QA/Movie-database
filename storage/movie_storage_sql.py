@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, text
 
 
 # Define the database URL
-DB_URL = os.path.join("data", "movies.db")
+DB_URL = f"sqlite:///{os.path.join('data', 'movies.db')}"
 
 # Create the engine
 engine = create_engine(DB_URL, echo=True)
